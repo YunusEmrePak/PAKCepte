@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
 export default function StopName({ name }) {
   return (
@@ -13,14 +14,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     alignItems: "center",
     justifyContent: "center",
-    padding: 0,
-    width: 420,
-    height: 100,
+    width: DEVICE_WIDTH,
+    height: DEVICE_HEIGHT / 10,
     borderBottomWidth: 3,
     borderBottomColor: "#D9D9D9",
   },
   name: {
     fontSize: 40,
     fontWeight: "800",
+    marginBottom: DEVICE_HEIGHT / 80,
   },
 });

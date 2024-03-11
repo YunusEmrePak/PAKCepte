@@ -14,9 +14,7 @@ export default function StopPage() {
   return (
     <View style={styles.appContainer}>
       <StatusBar style="light" />
-      <View style={styles.appTitle}>
         <AppTitle />
-      </View>
       <View style={styles.stopName}>
         <StopName name={stopName} />
       </View>
@@ -36,11 +34,10 @@ export default function StopPage() {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
+    // backgroundColor: "red",
     backgroundColor: "#F6F6F6",
-    alignItems: "flex-start",
+    alignItems: "center",
     justifyContent: "space-between",
-    padding: 0,
-    marginLeft: -4,
   },
   // appTitle: {
   //   flex: 1,

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { FlatList, StyleSheet, View } from "react-native";
 import Stop from "./Stop";
 
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+
 export default function Stops() {
   const dispatch = useDispatch();
 
@@ -23,7 +25,8 @@ export default function Stops() {
 
 const styles = StyleSheet.create({
   stopsContainer: {
-    padding: 16,
+    paddingHorizontal: DEVICE_WIDTH / 30,
+    paddingVertical: DEVICE_HEIGHT / 80,
   },
   stopItem: {
     flex: 1,

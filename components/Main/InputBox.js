@@ -6,6 +6,8 @@ import findIcon from "../../assets/find.png";
 import { useEffect, useRef } from "react";
 import { stopActions } from "../../redux/stopSlice";
 
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+
 export default function InputBox() {
   const dispatch = useDispatch();
 
@@ -53,41 +55,39 @@ export default function InputBox() {
 
 const styles = StyleSheet.create({
   inputBoxContainer: {
-    height: 80,
+    height: DEVICE_HEIGHT / 10,
     flexDirection: "row",
-    paddingHorizontal: 8,
-    paddingVertical: 16,
+    paddingHorizontal: DEVICE_WIDTH / 50,
+    paddingVertical: DEVICE_HEIGHT / 50,
     justifyContent: "space-between",
     alignItems: "center",
-    width: "100%",
+    width: DEVICE_WIDTH,
     borderBottomWidth: 3,
     borderBottomColor: "#D9D9D9",
-    marginBottom: 16,
+    marginBottom: DEVICE_HEIGHT / 60,
   },
   inputContainer: {
-    width: "80%",
+    width: DEVICE_WIDTH / 1.3,
   },
   input: {
     borderColor: "#D9D9D9",
     borderWidth: 2,
-    height: 50,
+    height: DEVICE_HEIGHT / 16.5,
     borderRadius: 10,
     backgroundColor: "white",
-    paddingHorizontal: 12,
+    paddingHorizontal: DEVICE_WIDTH / 30,
     fontSize: 18,
   },
   findButton: {
-    height: 50,
-    width: "40%",
-    // borderWidth: 2,
-    // borderColor: "#D9D9D9",
+    height: DEVICE_HEIGHT / 16.5,
+    width: DEVICE_WIDTH / 7,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 12,
-    marginLeft: -22,
+    marginLeft: -DEVICE_WIDTH / 40,
   },
   findIcon: {
-    width: 30,
-    height: 30,
+    width: DEVICE_WIDTH / 15,
+    height: DEVICE_WIDTH / 15,
   },
 });

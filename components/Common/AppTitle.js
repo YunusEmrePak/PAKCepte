@@ -3,7 +3,10 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import TitleIcon from "../../assets/titleIcon.png";
 
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+
 export default function AppTitle() {
+
   return (
     <View>
       <LinearGradient
@@ -21,19 +24,17 @@ export default function AppTitle() {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    padding: 20,
     flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    height: 120,
-    paddingTop: 40,
-    paddingLeft: 40,
-    width: 420
+    justifyContent: "center",
+    alignItems: "flex-end",
+    height: DEVICE_HEIGHT / 7.5,
+    paddingBottom: DEVICE_HEIGHT / 45,
+    width: DEVICE_WIDTH,
   },
   titleIcon: {
-    width: 50,
-    height: 50,
-    marginRight: 16,
+    width: DEVICE_WIDTH / 8,
+    height: DEVICE_WIDTH / 8,
+    marginRight: "4%",
   },
   titleText: {
     color: "#fff",

@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
 import leftArrow from "../../assets/leftArrow.png";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
 export default function KayasWay() {
   return (
@@ -21,18 +22,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     alignItems: "center",
     justifyContent: "center",
-    padding: 0,
-    width: 420,
-    height: 300,
+    width: DEVICE_WIDTH,
+    height: DEVICE_HEIGHT / 3,
   },
   directionContainer: {
     alignItems: "center",
     justifyContent: "center",
-    width: 340,
-    height: 65,
+    width: DEVICE_WIDTH / 1.2,
+    height: DEVICE_HEIGHT / 12,
     backgroundColor: "#FF5757",
     borderRadius: 12,
-    // marginTop: 16,
   },
   directionName: {
     fontSize: 30,
@@ -43,19 +42,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-    width: 390,
-    height: 65,
+    width: DEVICE_WIDTH / 1.06,
+    height: DEVICE_HEIGHT / 12,
     backgroundColor: "#8FFAC7",
-    borderRadius: 8,
-    marginTop: 32,
-    // marginBottom: 130,
+    borderRadius: 12,
+    marginTop: "8%",
   },
   time: {
     fontSize: 30,
     fontWeight: "700",
   },
   leftIcon: {
-    width: 50,
-    height: 50,
+    width: DEVICE_WIDTH / 8,
+    height: DEVICE_WIDTH / 8,
   },
 });

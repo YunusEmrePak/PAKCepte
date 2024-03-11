@@ -8,6 +8,8 @@ import clockIcon from "../../assets/clockLight.png";
 import stopTimeIcon from "../../assets/clipboardLight.png";
 import { stopActions } from "../../redux/stopSlice";
 
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+
 export default function Navigate() {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -57,19 +59,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     padding: 0,
-    width: 420,
-    height: 75,
+    width: DEVICE_WIDTH,
+    height: DEVICE_HEIGHT / 14,
   },
   backIcon: {
-    width: 60,
-    height: 60,
+    width: DEVICE_WIDTH / 9,
+    height: DEVICE_WIDTH / 9,
   },
   clockIcon: {
-    width: 60,
-    height: 60,
+    width: DEVICE_WIDTH / 9,
+    height: DEVICE_WIDTH / 9,
   },
   stopTimeIcon: {
-    width: 60,
-    height: 60,
+    width: DEVICE_WIDTH / 9,
+    height: DEVICE_WIDTH / 9,
   },
 });

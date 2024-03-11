@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     alignItems: "center",
     justifyContent: "space-between",
-    marginLeft: -4,
   },
   info: {
     fontSize: 50,

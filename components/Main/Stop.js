@@ -7,6 +7,8 @@ import { stopActions } from "../../redux/stopSlice";
 
 import { useNavigation } from "@react-navigation/native";
 
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+
 export default function Stop({ id, name }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -39,13 +41,13 @@ export default function Stop({ id, name }) {
 const styles = StyleSheet.create({
   stopContainer: {
     flexDirection: "row",
-    marginBottom: 12,
+    marginBottom: DEVICE_HEIGHT / 70,
   },
   idContainer: {
     backgroundColor: "blue",
-    height: 50,
-    width: "13%",
-    marginRight: 10,
+    height: DEVICE_WIDTH / 8.5,
+    width: DEVICE_WIDTH / 8.5,
+    marginRight: DEVICE_WIDTH / 35,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 8,
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flexDirection: "row",
     alignItems: "center",
-    width: "84.2%",
-    paddingLeft: 10,
+    width: DEVICE_WIDTH / 1.28,
+    paddingLeft: DEVICE_WIDTH / 40,
     borderWidth: 2,
     borderColor: "#D9D9D9",
     borderRadius: 8,
