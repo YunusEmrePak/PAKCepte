@@ -8,11 +8,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TimePage from "./pages/TimePage";
 import { store } from "./store/store";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
+
+import registerNNPushToken from "native-notify";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  registerNNPushToken(20107, "C98DT4OZ3bS5SuBP9UvSkW");
+
   return (
     <Provider store={store}>
       <NavigationContainer>
