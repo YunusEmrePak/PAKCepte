@@ -1,16 +1,48 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
+import { useEffect, useState } from "react";
 import rightArrow from "../../assets/rightArrow.png";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { stopActions } from "../../redux/stopSlice";
+
+const jsonTimes = require("../../times2.json");
+
+import { calculateRemainingTime } from "../../utils/calculateRemainingTime";
 
 export default function SincanWay() {
+  const dispatch = useDispatch();
+
+  const times = useSelector((state) => state.stopRedux.timesSincan);
+  const remainingTimeSincan = useSelector(
+    (state) => state.stopRedux.remainingTimeSincan
+  );
+  const stopId = useSelector((state) => state.stopRedux.stopId);
+
+  useEffect(() => {
+    if (stopId > 0) {
+      dispatch(
+        stopActions.setTimesSincan(jsonTimes[stopId - 1].timeListSincan)
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const minutesSincan = calculateRemainingTime(times);
+      dispatch(stopActions.setRemainingTimeSincan(minutesSincan));
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [times]);
+
   return (
     <View style={styles.sincanContainer}>
       <View style={styles.directionContainer}>
         <Text style={styles.directionName}>Sincan Yönü</Text>
       </View>
       <View style={styles.timeContainer}>
-        <Text style={styles.time}>12 Dakika</Text>
+        <Text style={styles.time}>{remainingTimeSincan} Dakika</Text>
         <Image source={rightArrow} style={styles.rightIcon} />
       </View>
     </View>

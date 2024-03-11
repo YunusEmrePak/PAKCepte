@@ -16,6 +16,7 @@ export default function Stop({ id, name }) {
   const navigateStop = () => {
     dispatch(stopActions.setStopName(name));
     dispatch(stopActions.setPageName("Stop"));
+    dispatch(stopActions.setStopId(id));
 
     navigation.navigate("Stop");
   };

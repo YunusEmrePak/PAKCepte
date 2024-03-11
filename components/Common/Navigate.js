@@ -20,79 +20,43 @@ export default function Navigate() {
 
   const stops = useSelector((state) => state.stopRedux.stops);
   const pageName = useSelector((state) => state.stopRedux.pageName);
-  const isPressedBackButton = useSelector(
-    (state) => state.stopRedux.isPressedBackButton
-  );
-  const isPressedStopButton = useSelector(
-    (state) => state.stopRedux.isPressedStopButton
-  );
-  const isPressedTimeButton = useSelector(
-    (state) => state.stopRedux.isPressedTimeButton
-  );
 
   const navigateBack = () => {
     dispatch(stopActions.setPageName("Main"));
     dispatch(stopActions.setSearchQuery(""));
     dispatch(stopActions.setFilteredStops(stops));
-    dispatch(stopActions.setIsPressedBackButton());
     navigation.navigate("Main");
   };
 
   const navigateStop = () => {
     dispatch(stopActions.setPageName("Stop"));
-    dispatch(stopActions.setIsPressedStopButton());
     navigation.navigate("Stop");
   };
 
   const navigateStopTime = () => {
     dispatch(stopActions.setPageName("Time"));
-    dispatch(stopActions.setIsPressedTimeButton());
     navigation.navigate("Time");
-  };
-
-  const setBackButtonColor = () => {
-    dispatch(stopActions.setIsPressedBackButton());
-  };
-
-  const setStopButtonColor = () => {
-    dispatch(stopActions.setIsPressedStopButton());
-  };
-
-  const setTimeButtonColor = () => {
-    dispatch(stopActions.setIsPressedTimeButton());
   };
 
   return (
     <View style={styles.navigateContainer}>
-      <Pressable onPress={navigateBack} onPressIn={setBackButtonColor}>
+      <Pressable onPress={navigateBack}>
         <View style={styles.navigateBack}>
-          <Image
-            source={isPressedBackButton ? backIconDark : backIcon}
-            style={styles.backIcon}
-          />
+          <Image source={backIcon} style={styles.backIcon} />
         </View>
       </Pressable>
-      <Pressable onPress={navigateStop} onPressIn={setStopButtonColor}>
+      <Pressable onPress={navigateStop}>
         <View style={styles.navigateStop}>
           <Image
-            source={
-              pageName === "Stop" ||
-              (pageName === "Time" && isPressedStopButton)
-                ? clockIconDark
-                : clockIcon
-            }
+            source={pageName === "Stop" ? clockIconDark : clockIcon}
             style={styles.clockIcon}
           />
         </View>
       </Pressable>
-      <Pressable onPress={navigateStopTime} onPressIn={setTimeButtonColor}>
+      <Pressable onPress={navigateStopTime}>
         <View style={styles.navigateStopTime}>
           <Image
-            source={
-              pageName === "Time" || isPressedTimeButton
-                ? stopTimeIconDark
-                : stopTimeIcon
-            }
+            source={pageName === "Time" ? stopTimeIconDark : stopTimeIcon}
             style={styles.stopTimeIcon}
           />
         </View>
@@ -113,15 +77,15 @@ const styles = StyleSheet.create({
     height: DEVICE_HEIGHT / 14,
   },
   backIcon: {
-    width: DEVICE_WIDTH / 9,
-    height: DEVICE_WIDTH / 9,
+    width: DEVICE_WIDTH / 11,
+    height: DEVICE_WIDTH / 11,
   },
   clockIcon: {
-    width: DEVICE_WIDTH / 9,
-    height: DEVICE_WIDTH / 9,
+    width: DEVICE_WIDTH / 11,
+    height: DEVICE_WIDTH / 11,
   },
   stopTimeIcon: {
-    width: DEVICE_WIDTH / 9,
-    height: DEVICE_WIDTH / 9,
+    width: DEVICE_WIDTH / 11,
+    height: DEVICE_WIDTH / 11,
   },
 });
