@@ -61,12 +61,13 @@ const initialState = {
   remainingTimeSincan: null,
   remainingTimeKayas: null,
   stopId: null,
+  timesButtonName: "Sincan",
 };
 export const stopSlice = createSlice({
   name: "stop",
   initialState,
   reducers: {
-    setStopName: (state, action) => {
+    setStopName: (state, action) => { 
       state.stopName = action.payload;
     },
     setPageName: (state, action) => {
@@ -92,6 +93,9 @@ export const stopSlice = createSlice({
     },
     setStopId(state, action) {
       state.stopId = action.payload;
+    },
+    setTimesButtonName(state, action) {
+      state.timesButtonName = action.payload;
     },
   },
 });
