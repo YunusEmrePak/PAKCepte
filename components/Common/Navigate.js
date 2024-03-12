@@ -77,15 +77,15 @@ const styles = StyleSheet.create({
     height: DEVICE_HEIGHT / 14,
   },
   backIcon: {
-    width: DEVICE_WIDTH / 11,
-    height: DEVICE_WIDTH / 11,
+    width: DEVICE_WIDTH / 13,
+    height: DEVICE_WIDTH / 13,
   },
   clockIcon: {
-    width: DEVICE_WIDTH / 11,
-    height: DEVICE_WIDTH / 11,
+    width: DEVICE_WIDTH / 13,
+    height: DEVICE_WIDTH / 13,
   },
   stopTimeIcon: {
-    width: DEVICE_WIDTH / 11,
-    height: DEVICE_WIDTH / 11,
+    width: DEVICE_WIDTH / 13,
+    height: DEVICE_WIDTH / 13,
   },
 });
