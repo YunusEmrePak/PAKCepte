@@ -32,7 +32,7 @@ export const loadArray = createAsyncThunk(
   "myArray/load",
   async (_, { dispatch }) => {
     try {
-      const jsonValue = await AsyncStorage.getItem("stopall");
+      const jsonValue = await AsyncStorage.getItem("allstops");
 
       if (jsonValue !== null) {
         return JSON.parse(jsonValue);
@@ -50,7 +50,7 @@ export const loadArrayFavorite = createAsyncThunk(
   "myArray/loadFavorite",
   async (_, { dispatch }) => {
     try {
-      const jsonValue = await AsyncStorage.getItem("stopfavorite");
+      const jsonValue = await AsyncStorage.getItem("favoritestops");
 
       if (jsonValue !== null) {
         return JSON.parse(jsonValue);
@@ -69,7 +69,7 @@ export const storeArray = createAsyncThunk(
   async (arrayData) => {
     try {
       const jsonValue = JSON.stringify(arrayData);
-      await AsyncStorage.setItem("stopall", jsonValue);
+      await AsyncStorage.setItem("allstops", jsonValue);
     } catch (error) {
       throw error;
     }
@@ -81,7 +81,7 @@ export const storeArrayFavorite = createAsyncThunk(
   async (arrayData) => {
     try {
       const jsonValue = JSON.stringify(arrayData);
-      await AsyncStorage.setItem("stopfavorite", jsonValue);
+      await AsyncStorage.setItem("favoritestops", jsonValue);
     } catch (error) {
       throw error;
     }
@@ -192,8 +192,8 @@ export const stopSlice = createSlice({
       }
       const jsonAll = JSON.stringify(state.stops);
       const jsonFavorite = JSON.stringify(state.favoriteStops);
-      AsyncStorage.setItem("stopall", jsonAll);
-      AsyncStorage.setItem("stopfavorite", jsonFavorite);
+      AsyncStorage.setItem("allstops", jsonAll);
+      AsyncStorage.setItem("favoritestops", jsonFavorite);
     },
   },
   extraReducers: (builder) => {

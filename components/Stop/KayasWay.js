@@ -19,6 +19,7 @@ export default function KayasWay() {
     (state) => state.stopRedux.remainingTimeKayas
   );
   const stopId = useSelector((state) => state.stopRedux.stopId);
+  const stopName = useSelector((state) => state.stopRedux.stopName);
 
   useEffect(() => {
     if (stopId > 0) {
@@ -40,10 +41,17 @@ export default function KayasWay() {
       <View style={styles.directionContainer}>
         <Text style={styles.directionName}>Kayaş Yönü</Text>
       </View>
-      <View style={styles.timeContainer}>
-        <Text style={styles.time}>{remainingTimeKayas} Dakika</Text>
-        <Image source={leftArrow} style={styles.leftIcon} />
-      </View>
+
+      {stopName === "Kayaş" ? (
+        <View style={styles.timeContainer}>
+          <Text style={styles.rightNow}>Şuan buradasınız.</Text>
+        </View>
+      ) : (
+        <View style={styles.timeContainer}>
+          <Text style={styles.time}>{remainingTimeKayas} Dakika</Text>
+          <Image source={leftArrow} style={styles.leftIcon} />
+        </View>
+      )}
     </View>
   );
 }
@@ -86,5 +94,8 @@ const styles = StyleSheet.create({
   leftIcon: {
     width: DEVICE_WIDTH / 8,
     height: DEVICE_WIDTH / 8,
+  },
+  rightNow: {
+    fontSize: 25,
   },
 });

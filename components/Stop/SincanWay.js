@@ -19,6 +19,8 @@ export default function SincanWay() {
   );
   const stopId = useSelector((state) => state.stopRedux.stopId);
 
+  const stopName = useSelector((state) => state.stopRedux.stopName);
+
   useEffect(() => {
     if (stopId > 0) {
       dispatch(
@@ -41,10 +43,16 @@ export default function SincanWay() {
       <View style={styles.directionContainer}>
         <Text style={styles.directionName}>Sincan Yönü</Text>
       </View>
-      <View style={styles.timeContainer}>
-        <Text style={styles.time}>{remainingTimeSincan} Dakika</Text>
-        <Image source={rightArrow} style={styles.rightIcon} />
-      </View>
+      {stopName === "Sincan" ? (
+        <View style={styles.timeContainer}>
+          <Text style={styles.rightNow}>Şuan buradasınız.</Text>
+        </View>
+      ) : (
+        <View style={styles.timeContainer}>
+          <Text style={styles.time}>{remainingTimeSincan} Dakika</Text>
+          <Image source={rightArrow} style={styles.rightIcon} />
+        </View>
+      )}
     </View>
   );
 }
@@ -90,4 +98,7 @@ const styles = StyleSheet.create({
     width: DEVICE_WIDTH / 8,
     height: DEVICE_WIDTH / 8,
   },
+  rightNow: {
+    fontSize: 25
+  }
 });
