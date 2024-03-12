@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
   },
   idContainer: {
     backgroundColor: "blue",
-    height: DEVICE_WIDTH / 8.5,
-    width: DEVICE_WIDTH / 8.5,
+    height: DEVICE_WIDTH / 7.5,
+    width: DEVICE_WIDTH / 7.5,
     marginRight: DEVICE_WIDTH / 35,
     justifyContent: "center",
     alignItems: "center",
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    width: DEVICE_WIDTH / 1.28,
+    width: DEVICE_WIDTH / 1.31,
     paddingLeft: DEVICE_WIDTH / 40,
     borderWidth: 2,
     borderColor: "#D9D9D9",
@@ -93,8 +93,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   emptyStar: {
-    width: DEVICE_WIDTH / 17,
-    height: DEVICE_WIDTH / 17,
+    width: DEVICE_WIDTH / 14,
+    height: DEVICE_WIDTH / 14,
     marginRight: DEVICE_WIDTH / 40,
   },
 });
