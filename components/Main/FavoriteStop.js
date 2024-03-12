@@ -6,8 +6,9 @@ import emptyStar from "../../assets/emptyStar.png";
 import fullStar from "../../assets/fullStar.png";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 import {
-  stopActions
+  stopActions, storeArrayFavorite
 } from "../../redux/stopSlice";
+import { useEffect } from "react";
 
 export default function FavoriteStop({ id, name, number }) {
   const navigation = useNavigation();
@@ -34,6 +35,12 @@ export default function FavoriteStop({ id, name, number }) {
     };
     dispatch(stopActions.setFavoriteStops(favorite));
   };
+
+
+  useEffect(() => {
+    // console.log(favoriteControl)
+    dispatch(storeArrayFavorite(favoriteStops));
+  }, [dispatch]);
 
 
   return (

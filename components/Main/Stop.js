@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import emptyStar from "../../assets/emptyStar.png";
 import fullStar from "../../assets/fullStar.png";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
-import { stopActions } from "../../redux/stopSlice";
+import { loadArray, stopActions, storeArray } from "../../redux/stopSlice";
 
 export default function Stop({ id, name }) {
   const navigation = useNavigation();
@@ -38,6 +38,10 @@ export default function Stop({ id, name }) {
     };
     dispatch(stopActions.setFavoriteStops(favorite));
   };
+
+  useEffect(() => {
+    dispatch(storeArray(favoriteControl));
+  }, [dispatch]);
 
   return (
     <Pressable onPress={navigateStop}>

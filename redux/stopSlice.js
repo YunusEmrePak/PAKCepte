@@ -1,6 +1,93 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const initialStops = [
+  { id: 1, name: "Sincan", isFavorite: false },
+  { id: 2, name: "Lale", isFavorite: false },
+  { id: 3, name: "Elvankent", isFavorite: false },
+  { id: 4, name: "Eryaman", isFavorite: false },
+  { id: 5, name: "Özgüneş", isFavorite: false },
+  { id: 6, name: "Etimesgut", isFavorite: false },
+  { id: 7, name: "Hava İstasyonu", isFavorite: false },
+  { id: 8, name: "Yıldırım", isFavorite: false },
+  { id: 9, name: "Behiçbey", isFavorite: false },
+  { id: 10, name: "Marşandiz", isFavorite: false },
+  { id: 11, name: "Gazi", isFavorite: false },
+  { id: 12, name: "Gazi Mahallesi", isFavorite: false },
+  { id: 13, name: "Hipodrom", isFavorite: false },
+  { id: 14, name: "Gar", isFavorite: false },
+  { id: 15, name: "Yenişehir", isFavorite: false },
+  { id: 16, name: "Kurtuluş", isFavorite: false },
+  { id: 17, name: "Cebeci", isFavorite: false },
+  { id: 18, name: "Demirlibahçe", isFavorite: false },
+  { id: 19, name: "Saimekadın", isFavorite: false },
+  { id: 20, name: "Mamak", isFavorite: false },
+  { id: 21, name: "Bağderesi", isFavorite: false },
+  { id: 22, name: "Üreğil", isFavorite: false },
+  { id: 23, name: "Köstence", isFavorite: false },
+  { id: 24, name: "Kayaş", isFavorite: false },
+];
+
+export const loadArray = createAsyncThunk(
+  "myArray/load",
+  async (_, { dispatch }) => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("stopall");
+
+      if (jsonValue !== null) {
+        return JSON.parse(jsonValue);
+      } else {
+        await storeArray(initialStops);
+        return initialStops;
+      }
+    } catch (error) {
+      throw error; // Rethrow to let createAsyncThunk handle the error
+    }
+  }
+);
+
+export const loadArrayFavorite = createAsyncThunk(
+  "myArray/loadFavorite",
+  async (_, { dispatch }) => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("stopfavorite");
+
+      if (jsonValue !== null) {
+        return JSON.parse(jsonValue);
+      } else {
+        await storeArray([]);
+        return [];
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const storeArray = createAsyncThunk(
+  "myArray/save",
+  async (arrayData) => {
+    try {
+      const jsonValue = JSON.stringify(arrayData);
+      await AsyncStorage.setItem("stopall", jsonValue);
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const storeArrayFavorite = createAsyncThunk(
+  "myArray/saveFav",
+  async (arrayData) => {
+    try {
+      const jsonValue = JSON.stringify(arrayData);
+      await AsyncStorage.setItem("stopfavorite", jsonValue);
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
 const initialState = {
   status: "idle",
   error: null,
@@ -32,32 +119,7 @@ const initialState = {
     { id: 23, name: "Köstence", isFavorite: false },
     { id: 24, name: "Kayaş", isFavorite: false },
   ],
-  stops: [
-    { id: 1, name: "Sincan", isFavorite: false },
-    { id: 2, name: "Lale", isFavorite: false },
-    { id: 3, name: "Elvankent", isFavorite: false },
-    { id: 4, name: "Eryaman", isFavorite: false },
-    { id: 5, name: "Özgüneş", isFavorite: false },
-    { id: 6, name: "Etimesgut", isFavorite: false },
-    { id: 7, name: "Hava İstasyonu", isFavorite: false },
-    { id: 8, name: "Yıldırım", isFavorite: false },
-    { id: 9, name: "Behiçbey", isFavorite: false },
-    { id: 10, name: "Marşandiz", isFavorite: false },
-    { id: 11, name: "Gazi", isFavorite: false },
-    { id: 12, name: "Gazi Mahallesi", isFavorite: false },
-    { id: 13, name: "Hipodrom", isFavorite: false },
-    { id: 14, name: "Gar", isFavorite: false },
-    { id: 15, name: "Yenişehir", isFavorite: false },
-    { id: 16, name: "Kurtuluş", isFavorite: false },
-    { id: 17, name: "Cebeci", isFavorite: false },
-    { id: 18, name: "Demirlibahçe", isFavorite: false },
-    { id: 19, name: "Saimekadın", isFavorite: false },
-    { id: 20, name: "Mamak", isFavorite: false },
-    { id: 21, name: "Bağderesi", isFavorite: false },
-    { id: 22, name: "Üreğil", isFavorite: false },
-    { id: 23, name: "Köstence", isFavorite: false },
-    { id: 24, name: "Kayaş", isFavorite: false },
-  ],
+  stops: [],
   filteredStops: [],
   favoriteStops: [],
   searchQuery: "",
@@ -128,7 +190,19 @@ export const stopSlice = createSlice({
           state.favoriteStops.splice(indexToDelete, 1);
         }
       }
+      const jsonAll = JSON.stringify(state.stops);
+      const jsonFavorite = JSON.stringify(state.favoriteStops);
+      AsyncStorage.setItem("stopall", jsonAll);
+      AsyncStorage.setItem("stopfavorite", jsonFavorite);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loadArray.fulfilled, (state, action) => {
+      state.stops = action.payload;
+    })
+    builder.addCase(loadArrayFavorite.fulfilled, (state, action) => {
+      state.favoriteStops = action.payload;
+    });
   },
 });
 

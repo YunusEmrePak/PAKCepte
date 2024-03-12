@@ -4,7 +4,8 @@ import { FlatList, StyleSheet, View } from "react-native";
 import Stop from "./Stop";
 
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
-
+import { useEffect } from "react";
+import { loadArray, loadArrayFavorite } from "../../redux/stopSlice";
 
 export default function Stops() {
   const dispatch = useDispatch();
@@ -16,7 +17,9 @@ export default function Stops() {
 
   const stopId = useSelector((state) => state.stopRedux.stopId);
 
-
+  useEffect(() => {
+    dispatch(loadArray());
+  }, [dispatch]);
 
   return (
     <View style={styles.stopsContainer}>

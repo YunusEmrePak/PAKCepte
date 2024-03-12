@@ -4,12 +4,18 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 import FavoriteStop from "./FavoriteStop";
+import { loadArrayFavorite } from "../../redux/stopSlice";
+import { useEffect } from "react";
 
 export default function FavoriteStops() {
   const dispatch = useDispatch();
 
   const favoriteStops = useSelector((state) => state.stopRedux.favoriteStops);
   const stopId = useSelector((state) => state.stopRedux.stopId);
+
+  useEffect(() => {
+    dispatch(loadArrayFavorite());
+  }, [dispatch]);
 
   return (
     <View style={styles.stopsContainer}>
