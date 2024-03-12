@@ -1,18 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
-import { LinearGradient } from "expo-linear-gradient";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { stopActions } from "../../redux/stopSlice";
 import { useNavigation } from "@react-navigation/native";
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+import { LinearGradient } from "expo-linear-gradient";
+import { useEffect } from "react";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import emptyStar from "../../assets/emptyStar.png";
 import fullStar from "../../assets/fullStar.png";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+import { stopActions } from "../../redux/stopSlice";
 
 export default function Stop({ id, name }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const favoriteControl = useSelector(
-    (state) => state.stopRedux.stops
+  const favoriteControl = useSelector((state) => state.stopRedux.stops);
+
+  const favoriteStops = useSelector((state) => state.stopRedux.favoriteStops);
+  const stopId = useSelector((state) => state.stopRedux.stopId);
+
+  const isClickedToFavoriteButton = useSelector(
+    (state) => state.stopRedux.isClickedToFavoriteButton
   );
 
   const navigateStop = () => {
@@ -30,7 +36,6 @@ export default function Stop({ id, name }) {
       name: name,
       isFavorite: true,
     };
-    dispatch(stopActions.setFavorite(id - 1));
     dispatch(stopActions.setFavoriteStops(favorite));
   };
 
@@ -49,7 +54,10 @@ export default function Stop({ id, name }) {
           <Text style={styles.name}>{name}</Text>
           <Pressable onPress={addToFavorite}>
             <Image
-              source={favoriteControl.length > 0 && (favoriteControl[id - 1].isFavorite ? fullStar : emptyStar)}
+              source={
+                favoriteControl &&
+                (favoriteControl[id - 1].isFavorite ? fullStar : emptyStar)
+              }
               style={styles.emptyStar}
             />
           </Pressable>

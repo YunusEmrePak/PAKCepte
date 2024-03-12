@@ -1,14 +1,13 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 
 import MainPage from "./pages/MainPage";
 import StopPage from "./pages/StopPage";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Provider, useDispatch } from "react-redux";
 import TimePage from "./pages/TimePage";
 import { store } from "./store/store";
-import { Provider } from "react-redux";
 
 import registerNNPushToken from "native-notify";
 

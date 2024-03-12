@@ -14,9 +14,11 @@ export default function InputBox() {
   const allStops = useSelector((state) => state.stopRedux.stops);
   const query = useSelector((state) => state.stopRedux.searchQuery);
 
-  const filteredStops = allStops.filter((stop) =>
-    stop.name.toLowerCase().includes(query.toLowerCase())
-  );
+  const filteredStops =
+    allStops &&
+    allStops.filter((stop) =>
+      stop.name.toLowerCase().includes(query.toLowerCase())
+    );
 
   useEffect(() => {
     dispatch(stopActions.setFilteredStops(filteredStops));

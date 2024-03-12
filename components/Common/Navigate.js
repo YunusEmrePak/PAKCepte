@@ -35,6 +35,7 @@ export default function Navigate() {
 
   const navigateStopTime = () => {
     dispatch(stopActions.setPageName("Time"));
+    dispatch(stopActions.setTimesButtonName("Sincan"))
     navigation.navigate("Time");
   };
 

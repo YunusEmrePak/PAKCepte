@@ -3,9 +3,15 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import TitleIcon from "../../assets/titleIcon.png";
 
+import { useDispatch, useSelector } from "react-redux";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
 export default function AppTitle() {
+  const dispatch = useDispatch();
+  const notStoredStops = useSelector((state) => state.stopRedux.notStoredStops);
+
+  const stops = useSelector((state) => state.stopRedux.stops);
+  const favoriteStops = useSelector((state) => state.stopRedux.favoriteStops);
 
   return (
     <View>

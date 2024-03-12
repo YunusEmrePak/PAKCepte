@@ -6,7 +6,7 @@ import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { stopActions } from "../../redux/stopSlice";
 
-const jsonTimes = require("../../times2.json");
+const jsonTimes = require("../../times3.json");
 
 import { calculateRemainingTime } from "../../utils/calculateRemainingTime";
 

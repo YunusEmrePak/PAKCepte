@@ -1,25 +1,27 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { stopActions } from "../../redux/stopSlice";
-import { useNavigation } from "@react-navigation/native";
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+import { useDispatch, useSelector } from "react-redux";
 import emptyStar from "../../assets/emptyStar.png";
 import fullStar from "../../assets/fullStar.png";
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+import {
+  stopActions
+} from "../../redux/stopSlice";
 
 export default function FavoriteStop({ id, name, number }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const favoriteControl = useSelector(
-    (state) => state.stopRedux.stops
-  );
+  const favoriteControl = useSelector((state) => state.stopRedux.stops);
+
+  const favoriteStops = useSelector((state) => state.stopRedux.favoriteStops);
+  const stopId = useSelector((state) => state.stopRedux.stopId);
 
   const navigateStop = () => {
     dispatch(stopActions.setStopName(name));
     dispatch(stopActions.setPageName("Stop"));
     dispatch(stopActions.setStopId(id));
-
     navigation.navigate("Stop");
   };
 
@@ -30,9 +32,9 @@ export default function FavoriteStop({ id, name, number }) {
       name: name,
       isFavorite: true,
     };
-    dispatch(stopActions.setFavorite(id - 1));
     dispatch(stopActions.setFavoriteStops(favorite));
   };
+
 
   return (
     <Pressable onPress={navigateStop}>
@@ -48,7 +50,10 @@ export default function FavoriteStop({ id, name, number }) {
         <View style={styles.nameContainer}>
           <Text style={styles.name}>{name}</Text>
           <Pressable onPress={addToFavorite}>
-            <Image source={favoriteControl[id - 1] ? fullStar : emptyStar} style={styles.emptyStar} />
+            <Image
+              source={favoriteControl[id - 1] ? fullStar : emptyStar}
+              style={styles.emptyStar}
+            />
           </Pressable>
         </View>
       </View>

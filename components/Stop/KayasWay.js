@@ -1,14 +1,14 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
+import { useDispatch, useSelector } from "react-redux";
 import leftArrow from "../../assets/leftArrow.png";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
-import { useDispatch, useSelector } from "react-redux";
 
-const jsonTimes = require("../../times2.json");
+const jsonTimes = require("../../times3.json");
 
-import { calculateRemainingTime } from "../../utils/calculateRemainingTime";
 import { useEffect } from "react";
 import { stopActions } from "../../redux/stopSlice";
+import { calculateRemainingTime } from "../../utils/calculateRemainingTime";
 
 export default function KayasWay() {
   const dispatch = useDispatch();

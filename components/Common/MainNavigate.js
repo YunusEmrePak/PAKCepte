@@ -1,14 +1,8 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 
-import backIcon from "../../assets/backButtonLight.png";
-import clockIcon from "../../assets/clockLight.png";
-import stopTimeIcon from "../../assets/clipboardLight.png";
-import backIconDark from "../../assets/backButtonDark.png";
-import clockIconDark from "../../assets/clockDark.png";
-import stopTimeIconDark from "../../assets/clipboardDark.png";
 
 import { stopActions } from "../../redux/stopSlice";
 
@@ -21,14 +15,16 @@ export default function MainNavigate() {
   const stops = useSelector((state) => state.stopRedux.stops);
   const pageName = useSelector((state) => state.stopRedux.pageName);
 
+  const favoriteControl = useSelector((state) => state.stopRedux.stops);
+
+  const favoriteStops = useSelector((state) => state.stopRedux.favoriteStops);
+
   const mainPageButtonName = useSelector(
     (state) => state.stopRedux.mainPageButtonName
   );
 
   const navigateAllStops = () => {
     dispatch(stopActions.setMainPageButtonName("All"));
-    // dispatch(stopActions.setSearchQuery(""));
-    // dispatch(stopActions.setFilteredStops(stops));
   };
 
   const navigateFavoriteStop = () => {

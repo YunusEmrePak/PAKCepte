@@ -1,38 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const loadArrayFromStorage = createAsyncThunk(
-  'array/loadArrayFromStorage',
-  async () => {
-    try {
-      const isFirstLaunch = await AsyncStorage.getItem('isFirstLaunch');
-
-      if (isFirstLaunch === null) {
-        // First Launch - Set flag
-        await AsyncStorage.setItem('isFirstLaunch', 'false'); 
-        return []; // Return an empty array for the initial setup
-      } else {
-        const storedArray = await AsyncStorage.getItem('myStoredArray');
-        return storedArray ? JSON.parse(storedArray) : [];
-      }
-
-    } catch (error) {
-      throw error;
-    }
-  }
-);
-
-export const saveArrayToStorage = createAsyncThunk(
-  "array/saveArrayToStorage",
-  async (array) => {
-    try {
-      await AsyncStorage.setItem("myStoredArray", JSON.stringify(array));
-    } catch (error) {
-      throw error;
-    }
-  }
-);
-
 const initialState = {
   status: "idle",
   error: null,
@@ -98,9 +66,10 @@ const initialState = {
   remainingTimeSincan: null,
   remainingTimeKayas: null,
   stopId: null,
+  stopFavoriteId: null,
   timesButtonName: "Sincan",
   mainPageButtonName: "All",
-  favoriteIndex: null,
+  isClickedToFavoriteButton: false,
 };
 export const stopSlice = createSlice({
   name: "stop",
@@ -133,18 +102,22 @@ export const stopSlice = createSlice({
     setStopId(state, action) {
       state.stopId = action.payload;
     },
+    setStopFavoriteId(state, action) {
+      state.stopFavoriteId = action.payload;
+    },
+    setIsClickedToFavoriteButton(state) {
+      state.isClickedToFavoriteButton = !state.isClickedToFavoriteButton;
+    },
     setTimesButtonName(state, action) {
       state.timesButtonName = action.payload;
     },
     setMainPageButtonName(state, action) {
       state.mainPageButtonName = action.payload;
     },
-    setFavorite(state, action) {
-      const index = action.payload;
-      state.stops[index].isFavorite = !state.stops[index].isFavorite;
-      state.favoriteIndex = index + 1;
-    },
     setFavoriteStops(state, action) {
+      const index = action.payload.id - 1;
+      state.stops[index].isFavorite = !state.stops[index].isFavorite;
+
       if (state.stops[state.stopId - 1].isFavorite) {
         state.favoriteStops.push(action.payload);
       } else {
@@ -156,23 +129,6 @@ export const stopSlice = createSlice({
         }
       }
     },
-  },
-  extraReducers(builder) {
-    builder
-      .addCase(loadArrayFromStorage.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(loadArrayFromStorage.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.stops = action.payload;
-      })
-      .addCase(loadArrayFromStorage.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
-      })
-      .addCase(saveArrayToStorage.fulfilled, (state, action) => {
-        // Array saved, you might optionally refetch or update state
-      });
   },
 });
 

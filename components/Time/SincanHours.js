@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
-const jsonTimes = require("../../times2.json");
+const jsonTimes = require("../../times3.json");
 
 export default function SincanHours({ id }) {
   const dispatch = useDispatch();
