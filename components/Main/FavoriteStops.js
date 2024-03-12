@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import Stop from "./Stop";
 
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
@@ -13,13 +13,17 @@ export default function FavoriteStops() {
 
   return (
     <View style={styles.stopsContainer}>
-      <FlatList
-        data={favoriteStops}
-        renderItem={({ item, index }) => (
-          <FavoriteStop name={item.name} id={item.id} number={index + 1} />
-        )}
-        keyExtractor={(item) => item.id}
-      />
+      {favoriteStops.length > 0 ? (
+        <FlatList
+          data={favoriteStops}
+          renderItem={({ item, index }) => (
+            <FavoriteStop name={item.name} id={item.id} number={index + 1} />
+          )}
+          keyExtractor={(item) => item.id}
+        />
+      ) : (
+        <Text style={styles.noFavoriteText}>Favori durak bulunamadı.</Text>
+      )}
     </View>
   );
 }
@@ -31,5 +35,8 @@ const styles = StyleSheet.create({
   },
   stopItem: {
     flex: 1,
+  },
+  noFavoriteText: {
+    fontSize: 20,
   },
 });
