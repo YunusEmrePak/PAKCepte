@@ -41,7 +41,7 @@ export default function TimePageButtons() {
           ]}
         >
           <Text style={styles.kayasButtonText}>Kayaş</Text>
-        <Image source={leftArrow} style={styles.leftIcon} />
+          <Image source={leftArrow} style={styles.leftIcon} />
         </View>
       </Pressable>
     </View>

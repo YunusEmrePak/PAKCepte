@@ -7,7 +7,7 @@ import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 import emptyStar from "../../assets/emptyStar.png";
 import fullStar from "../../assets/fullStar.png";
 
-export default function Stop({ id, name }) {
+export default function FavoriteStop({ id, name, number }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -43,15 +43,12 @@ export default function Stop({ id, name }) {
           end={{ x: 1, y: 0.5 }}
           style={styles.idContainer}
         >
-          <Text style={styles.idText}>{id}</Text>
+          <Text style={styles.idText}>{number}</Text>
         </LinearGradient>
         <View style={styles.nameContainer}>
           <Text style={styles.name}>{name}</Text>
           <Pressable onPress={addToFavorite}>
-            <Image
-              source={favoriteControl.length > 0 && (favoriteControl[id - 1].isFavorite ? fullStar : emptyStar)}
-              style={styles.emptyStar}
-            />
+            <Image source={favoriteControl[id - 1] ? fullStar : emptyStar} style={styles.emptyStar} />
           </Pressable>
         </View>
       </View>

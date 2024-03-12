@@ -4,57 +4,58 @@ const initialState = {
   stopName: null,
   pageName: null,
   stops: [
-    { id: 1, name: "Sincan" },
-    { id: 2, name: "Lale" },
-    { id: 3, name: "Elvankent" },
-    { id: 4, name: "Eryaman" },
-    { id: 5, name: "Özgüneş" },
-    { id: 6, name: "Etimesgut" },
-    { id: 7, name: "Hava İstasyonu" },
-    { id: 8, name: "Yıldırım" },
-    { id: 9, name: "Behiçbey" },
-    { id: 10, name: "Marşandiz" },
-    { id: 11, name: "Gazi" },
-    { id: 12, name: "Gazi Mahallesi" },
-    { id: 13, name: "Hipodrom" },
-    { id: 14, name: "Gar" },
-    { id: 15, name: "Yenişehir" },
-    { id: 16, name: "Kurtuluş" },
-    { id: 17, name: "Cebeci" },
-    { id: 18, name: "Demirlibahçe" },
-    { id: 19, name: "Saimekadın" },
-    { id: 20, name: "Mamak" },
-    { id: 21, name: "Bağderesi" },
-    { id: 22, name: "Üreğil" },
-    { id: 23, name: "Köstence" },
-    { id: 24, name: "Kayaş" },
+    { id: 1, name: "Sincan", isFavorite: false },
+    { id: 2, name: "Lale", isFavorite: false },
+    { id: 3, name: "Elvankent", isFavorite: false },
+    { id: 4, name: "Eryaman", isFavorite: false },
+    { id: 5, name: "Özgüneş", isFavorite: false },
+    { id: 6, name: "Etimesgut", isFavorite: false },
+    { id: 7, name: "Hava İstasyonu", isFavorite: false },
+    { id: 8, name: "Yıldırım", isFavorite: false },
+    { id: 9, name: "Behiçbey", isFavorite: false },
+    { id: 10, name: "Marşandiz", isFavorite: false },
+    { id: 11, name: "Gazi", isFavorite: false },
+    { id: 12, name: "Gazi Mahallesi", isFavorite: false },
+    { id: 13, name: "Hipodrom", isFavorite: false },
+    { id: 14, name: "Gar", isFavorite: false },
+    { id: 15, name: "Yenişehir", isFavorite: false },
+    { id: 16, name: "Kurtuluş", isFavorite: false },
+    { id: 17, name: "Cebeci", isFavorite: false },
+    { id: 18, name: "Demirlibahçe", isFavorite: false },
+    { id: 19, name: "Saimekadın", isFavorite: false },
+    { id: 20, name: "Mamak", isFavorite: false },
+    { id: 21, name: "Bağderesi", isFavorite: false },
+    { id: 22, name: "Üreğil", isFavorite: false },
+    { id: 23, name: "Köstence", isFavorite: false },
+    { id: 24, name: "Kayaş", isFavorite: false },
   ],
   filteredStops: [
-    { id: 1, name: "Sincan" },
-    { id: 2, name: "Lale" },
-    { id: 3, name: "Elvankent" },
-    { id: 4, name: "Eryaman" },
-    { id: 5, name: "Özgüneş" },
-    { id: 6, name: "Etimesgut" },
-    { id: 7, name: "Hava İstasyonu" },
-    { id: 8, name: "Yıldırım" },
-    { id: 9, name: "Behiçbey" },
-    { id: 10, name: "Marşandiz" },
-    { id: 11, name: "Gazi" },
-    { id: 12, name: "Gazi Mahallesi" },
-    { id: 13, name: "Hipodrom" },
-    { id: 14, name: "Gar" },
-    { id: 15, name: "Yenişehir" },
-    { id: 16, name: "Kurtuluş" },
-    { id: 17, name: "Cebeci" },
-    { id: 18, name: "Demirlibahçe" },
-    { id: 19, name: "Saimekadın" },
-    { id: 20, name: "Mamak" },
-    { id: 21, name: "Bağderesi" },
-    { id: 22, name: "Üreğil" },
-    { id: 23, name: "Köstence" },
-    { id: 24, name: "Kayaş" },
+    // { id: 1, name: "Sincan", isFavorite: false },
+    // { id: 2, name: "Lale", isFavorite: false },
+    // { id: 3, name: "Elvankent", isFavorite: false },
+    // { id: 4, name: "Eryaman", isFavorite: false },
+    // { id: 5, name: "Özgüneş", isFavorite: false },
+    // { id: 6, name: "Etimesgut", isFavorite: false },
+    // { id: 7, name: "Hava İstasyonu", isFavorite: false },
+    // { id: 8, name: "Yıldırım", isFavorite: false },
+    // { id: 9, name: "Behiçbey", isFavorite: false },
+    // { id: 10, name: "Marşandiz", isFavorite: false },
+    // { id: 11, name: "Gazi", isFavorite: false },
+    // { id: 12, name: "Gazi Mahallesi", isFavorite: false },
+    // { id: 13, name: "Hipodrom", isFavorite: false },
+    // { id: 14, name: "Gar", isFavorite: false },
+    // { id: 15, name: "Yenişehir", isFavorite: false },
+    // { id: 16, name: "Kurtuluş", isFavorite: false },
+    // { id: 17, name: "Cebeci", isFavorite: false },
+    // { id: 18, name: "Demirlibahçe", isFavorite: false },
+    // { id: 19, name: "Saimekadın", isFavorite: false },
+    // { id: 20, name: "Mamak", isFavorite: false },
+    // { id: 21, name: "Bağderesi", isFavorite: false },
+    // { id: 22, name: "Üreğil", isFavorite: false },
+    // { id: 23, name: "Köstence", isFavorite: false },
+    // { id: 24, name: "Kayaş", isFavorite: false },
   ],
+  favoriteStops: [],
   searchQuery: "",
   timesSincan: null,
   timesKayas: null,
@@ -62,12 +63,14 @@ const initialState = {
   remainingTimeKayas: null,
   stopId: null,
   timesButtonName: "Sincan",
+  mainPageButtonName: "All",
+  favoriteIndex: null,
 };
 export const stopSlice = createSlice({
   name: "stop",
   initialState,
   reducers: {
-    setStopName: (state, action) => { 
+    setStopName: (state, action) => {
       state.stopName = action.payload;
     },
     setPageName: (state, action) => {
@@ -96,6 +99,26 @@ export const stopSlice = createSlice({
     },
     setTimesButtonName(state, action) {
       state.timesButtonName = action.payload;
+    },
+    setMainPageButtonName(state, action) {
+      state.mainPageButtonName = action.payload;
+    },
+    setFavorite(state, action) {
+      const index = action.payload;
+      state.stops[index].isFavorite = !state.stops[index].isFavorite;
+      state.favoriteIndex = index + 1;
+    },
+    setFavoriteStops(state, action) {
+      if (state.stops[state.stopId - 1].isFavorite) {
+        state.favoriteStops.push(action.payload);
+      } else {
+        const indexToDelete = state.favoriteStops.findIndex(
+          (item) => item.id === state.stopId
+        );
+        if (indexToDelete !== -1) {
+          state.favoriteStops.splice(indexToDelete, 1);
+        }
+      }
     },
   },
 });

@@ -4,19 +4,19 @@ import { FlatList, StyleSheet, View } from "react-native";
 import Stop from "./Stop";
 
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+import FavoriteStop from "./FavoriteStop";
 
-export default function Stops() {
+export default function FavoriteStops() {
   const dispatch = useDispatch();
 
-  const filteredStops = useSelector((state) => state.stopRedux.filteredStops);
-  const stops = useSelector((state) => state.stopRedux.stops);
+  const favoriteStops = useSelector((state) => state.stopRedux.favoriteStops);
 
   return (
     <View style={styles.stopsContainer}>
       <FlatList
-        data={filteredStops.length > 0 ? filteredStops : stops}
-        renderItem={(itemData) => (
-          <Stop name={itemData.item.name} id={itemData.item.id} />
+        data={favoriteStops}
+        renderItem={({ item, index }) => (
+          <FavoriteStop name={item.name} id={item.id} number={index + 1} />
         )}
         keyExtractor={(item) => item.id}
       />
@@ -27,7 +27,7 @@ export default function Stops() {
 const styles = StyleSheet.create({
   stopsContainer: {
     paddingHorizontal: DEVICE_WIDTH / 30,
-    paddingVertical: DEVICE_HEIGHT / 80,
+    paddingVertical: DEVICE_HEIGHT / 40,
   },
   stopItem: {
     flex: 1,
