@@ -34,24 +34,8 @@ export default function StopPage() {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    // backgroundColor: "red",
     backgroundColor: "#F6F6F6",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  // appTitle: {
-  //   flex: 1,
-  // },
-  // stopName: {
-  //   flex: 1,
-  // },
-  // sincanWay: {
-  //   flex: 3,
-  // },
-  // kayasWay: {
-  //   flex: 2,
-  // },
-  // navigate: {
-  //   flex: 1,
-  // },
 });

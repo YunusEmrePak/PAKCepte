@@ -1,13 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 
-import { useDispatch, useSelector } from "react-redux";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
-const jsonTimes = require("../../times3.json");
-
 export default function SincanHours({ id }) {
-  const dispatch = useDispatch();
-
   const times = useSelector((state) => state.stopRedux.timesSincan);
 
   return (
@@ -31,8 +27,6 @@ export default function SincanHours({ id }) {
 
 const styles = StyleSheet.create({
   hourContainer: {
-    //   backgroundColor: "#F6F6F6",
-    // backgroundColor: "blue",
     width: DEVICE_WIDTH / 1.2,
     height: DEVICE_HEIGHT / 23,
     flexDirection: "row",

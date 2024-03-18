@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#D9D9D9",
   },
   name: {
-    fontSize: 40,
+    fontSize: DEVICE_WIDTH / 10.5,
     fontWeight: "800",
     marginBottom: DEVICE_HEIGHT / 80,
   },

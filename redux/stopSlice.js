@@ -8,14 +8,14 @@ const initialStops = [
   { id: 4, name: "Eryaman", isFavorite: false },
   { id: 5, name: "Özgüneş", isFavorite: false },
   { id: 6, name: "Etimesgut", isFavorite: false },
-  { id: 7, name: "Hava İstasyonu", isFavorite: false },
+  { id: 7, name: "Hava Durağı", isFavorite: false },
   { id: 8, name: "Yıldırım", isFavorite: false },
   { id: 9, name: "Behiçbey", isFavorite: false },
-  { id: 10, name: "Marşandiz", isFavorite: false },
+  { id: 10, name: "Motor Durağı", isFavorite: false },
   { id: 11, name: "Gazi", isFavorite: false },
   { id: 12, name: "Gazi Mahallesi", isFavorite: false },
   { id: 13, name: "Hipodrom", isFavorite: false },
-  { id: 14, name: "Gar", isFavorite: false },
+  { id: 14, name: "Ankara", isFavorite: false },
   { id: 15, name: "Yenişehir", isFavorite: false },
   { id: 16, name: "Kurtuluş", isFavorite: false },
   { id: 17, name: "Cebeci", isFavorite: false },
@@ -32,7 +32,7 @@ export const loadArray = createAsyncThunk(
   "myArray/load",
   async (_, { dispatch }) => {
     try {
-      const jsonValue = await AsyncStorage.getItem("allstops");
+      const jsonValue = await AsyncStorage.getItem("allTheStops");
 
       if (jsonValue !== null) {
         return JSON.parse(jsonValue);
@@ -41,7 +41,19 @@ export const loadArray = createAsyncThunk(
         return initialStops;
       }
     } catch (error) {
-      throw error; // Rethrow to let createAsyncThunk handle the error
+      throw error;
+    }
+  }
+);
+
+export const storeArray = createAsyncThunk(
+  "myArray/save",
+  async (arrayData) => {
+    try {
+      const jsonValue = JSON.stringify(arrayData);
+      await AsyncStorage.setItem("allTheStops", jsonValue);
+    } catch (error) {
+      throw error;
     }
   }
 );
@@ -50,7 +62,7 @@ export const loadArrayFavorite = createAsyncThunk(
   "myArray/loadFavorite",
   async (_, { dispatch }) => {
     try {
-      const jsonValue = await AsyncStorage.getItem("favoritestops");
+      const jsonValue = await AsyncStorage.getItem("allTheFavorites");
 
       if (jsonValue !== null) {
         return JSON.parse(jsonValue);
@@ -64,24 +76,12 @@ export const loadArrayFavorite = createAsyncThunk(
   }
 );
 
-export const storeArray = createAsyncThunk(
-  "myArray/save",
-  async (arrayData) => {
-    try {
-      const jsonValue = JSON.stringify(arrayData);
-      await AsyncStorage.setItem("allstops", jsonValue);
-    } catch (error) {
-      throw error;
-    }
-  }
-);
-
 export const storeArrayFavorite = createAsyncThunk(
   "myArray/saveFav",
   async (arrayData) => {
     try {
       const jsonValue = JSON.stringify(arrayData);
-      await AsyncStorage.setItem("favoritestops", jsonValue);
+      await AsyncStorage.setItem("allTheFavorites", jsonValue);
     } catch (error) {
       throw error;
     }
@@ -93,32 +93,6 @@ const initialState = {
   error: null,
   stopName: null,
   pageName: null,
-  notStoredStops: [
-    { id: 1, name: "Sincan", isFavorite: false },
-    { id: 2, name: "Lale", isFavorite: false },
-    { id: 3, name: "Elvankent", isFavorite: false },
-    { id: 4, name: "Eryaman", isFavorite: false },
-    { id: 5, name: "Özgüneş", isFavorite: false },
-    { id: 6, name: "Etimesgut", isFavorite: false },
-    { id: 7, name: "Hava İstasyonu", isFavorite: false },
-    { id: 8, name: "Yıldırım", isFavorite: false },
-    { id: 9, name: "Behiçbey", isFavorite: false },
-    { id: 10, name: "Marşandiz", isFavorite: false },
-    { id: 11, name: "Gazi", isFavorite: false },
-    { id: 12, name: "Gazi Mahallesi", isFavorite: false },
-    { id: 13, name: "Hipodrom", isFavorite: false },
-    { id: 14, name: "Gar", isFavorite: false },
-    { id: 15, name: "Yenişehir", isFavorite: false },
-    { id: 16, name: "Kurtuluş", isFavorite: false },
-    { id: 17, name: "Cebeci", isFavorite: false },
-    { id: 18, name: "Demirlibahçe", isFavorite: false },
-    { id: 19, name: "Saimekadın", isFavorite: false },
-    { id: 20, name: "Mamak", isFavorite: false },
-    { id: 21, name: "Bağderesi", isFavorite: false },
-    { id: 22, name: "Üreğil", isFavorite: false },
-    { id: 23, name: "Köstence", isFavorite: false },
-    { id: 24, name: "Kayaş", isFavorite: false },
-  ],
   stops: [],
   filteredStops: [],
   favoriteStops: [],
@@ -133,6 +107,7 @@ const initialState = {
   mainPageButtonName: "All",
   isClickedToFavoriteButton: false,
 };
+
 export const stopSlice = createSlice({
   name: "stop",
   initialState,
@@ -176,6 +151,9 @@ export const stopSlice = createSlice({
     setMainPageButtonName(state, action) {
       state.mainPageButtonName = action.payload;
     },
+    setStorageClear() {
+      AsyncStorage.clear();
+    },
     setFavoriteStops(state, action) {
       const index = action.payload.id - 1;
       state.stops[index].isFavorite = !state.stops[index].isFavorite;
@@ -192,14 +170,14 @@ export const stopSlice = createSlice({
       }
       const jsonAll = JSON.stringify(state.stops);
       const jsonFavorite = JSON.stringify(state.favoriteStops);
-      AsyncStorage.setItem("allstops", jsonAll);
-      AsyncStorage.setItem("favoritestops", jsonFavorite);
+      AsyncStorage.setItem("allTheStops", jsonAll);
+      AsyncStorage.setItem("allTheFavorites", jsonFavorite);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(loadArray.fulfilled, (state, action) => {
       state.stops = action.payload;
-    })
+    });
     builder.addCase(loadArrayFavorite.fulfilled, (state, action) => {
       state.favoriteStops = action.payload;
     });

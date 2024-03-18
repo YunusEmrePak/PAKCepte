@@ -1,14 +1,15 @@
+import { useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-
-import { useEffect, useState } from "react";
-import rightArrow from "../../assets/rightArrow.png";
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 import { useDispatch, useSelector } from "react-redux";
+
+import rightArrow from "../../assets/rightArrow.png";
+
 import { stopActions } from "../../redux/stopSlice";
 
-const jsonTimes = require("../../times3.json");
-
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 import { calculateRemainingTime } from "../../utils/calculateRemainingTime";
+
+const jsonTimes = require("../../times.json");
 
 export default function SincanWay() {
   const dispatch = useDispatch();
@@ -18,7 +19,6 @@ export default function SincanWay() {
     (state) => state.stopRedux.remainingTimeSincan
   );
   const stopId = useSelector((state) => state.stopRedux.stopId);
-
   const stopName = useSelector((state) => state.stopRedux.stopName);
 
   useEffect(() => {
@@ -49,7 +49,9 @@ export default function SincanWay() {
         </View>
       ) : (
         <View style={styles.timeContainer}>
-          <Text style={styles.time}>{remainingTimeSincan} Dakika</Text>
+          <Text style={styles.time}>
+            {remainingTimeSincan} {remainingTimeSincan !== "Geldi" && "Dakika"}{" "}
+          </Text>
           <Image source={rightArrow} style={styles.rightIcon} />
         </View>
       )}
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   directionName: {
-    fontSize: 30,
+    fontSize: DEVICE_WIDTH / 14,
     color: "#fff",
     fontWeight: "800",
   },
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
     marginTop: "8%",
   },
   time: {
-    fontSize: 30,
+    fontSize: DEVICE_WIDTH / 14,
     fontWeight: "700",
   },
   rightIcon: {
@@ -99,6 +101,7 @@ const styles = StyleSheet.create({
     height: DEVICE_WIDTH / 8,
   },
   rightNow: {
-    fontSize: 25
-  }
+    fontSize: DEVICE_WIDTH / 14,
+    fontWeight: "700",
+  },
 });

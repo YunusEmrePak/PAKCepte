@@ -1,16 +1,15 @@
-import { Image, Pressable, StyleSheet, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 
-import backIcon from "../../assets/backButtonLight.png";
-import clockIcon from "../../assets/clockLight.png";
-import stopTimeIcon from "../../assets/clipboardLight.png";
-import backIconDark from "../../assets/backButtonDark.png";
-import clockIconDark from "../../assets/clockDark.png";
-import stopTimeIconDark from "../../assets/clipboardDark.png";
-
 import { stopActions } from "../../redux/stopSlice";
+
+import backIcon from "../../assets/backButtonLight.png";
+import stopTimeIconDark from "../../assets/clipboardDark.png";
+import stopTimeIcon from "../../assets/clipboardLight.png";
+import clockIconDark from "../../assets/clockDark.png";
+import clockIcon from "../../assets/clockLight.png";
 
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
@@ -35,31 +34,34 @@ export default function Navigate() {
 
   const navigateStopTime = () => {
     dispatch(stopActions.setPageName("Time"));
-    dispatch(stopActions.setTimesButtonName("Sincan"))
+    dispatch(stopActions.setTimesButtonName("Sincan"));
     navigation.navigate("Time");
   };
 
   return (
     <View style={styles.navigateContainer}>
       <Pressable onPress={navigateBack}>
-        <View style={styles.navigateBack}>
-          <Image source={backIcon} style={styles.backIcon} />
+        <View style={styles.navigate}>
+          <Image source={backIcon} style={styles.icon} />
+          <Text style={styles.text}>Geri</Text>
         </View>
       </Pressable>
       <Pressable onPress={navigateStop}>
-        <View style={styles.navigateStop}>
+        <View style={styles.navigate}>
           <Image
             source={pageName === "Stop" ? clockIconDark : clockIcon}
-            style={styles.clockIcon}
+            style={styles.icon}
           />
+          <Text style={styles.text}>Durak</Text>
         </View>
       </Pressable>
       <Pressable onPress={navigateStopTime}>
-        <View style={styles.navigateStopTime}>
+        <View style={styles.navigate}>
           <Image
             source={pageName === "Time" ? stopTimeIconDark : stopTimeIcon}
-            style={styles.stopTimeIcon}
+            style={styles.icon}
           />
+          <Text style={styles.text}>Saatler</Text>
         </View>
       </Pressable>
     </View>
@@ -68,25 +70,25 @@ export default function Navigate() {
 
 const styles = StyleSheet.create({
   navigateContainer: {
-    // flex: 1,
     backgroundColor: "#fff",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
     padding: 0,
     width: DEVICE_WIDTH,
-    height: DEVICE_HEIGHT / 14,
+    height: DEVICE_HEIGHT / 12,
   },
-  backIcon: {
-    width: DEVICE_WIDTH / 13,
-    height: DEVICE_WIDTH / 13,
+  navigate: {
+    alignItems: "center",
+    justifyContent: "space-between",
+    height: DEVICE_HEIGHT / 17,
   },
-  clockIcon: {
-    width: DEVICE_WIDTH / 13,
-    height: DEVICE_WIDTH / 13,
+  icon: {
+    width: DEVICE_WIDTH / 17,
+    height: DEVICE_WIDTH / 17,
   },
-  stopTimeIcon: {
-    width: DEVICE_WIDTH / 13,
-    height: DEVICE_WIDTH / 13,
+  text: {
+    fontSize: DEVICE_WIDTH / 20.5,
+    color: "#2A2323",
   },
 });

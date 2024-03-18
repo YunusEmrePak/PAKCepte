@@ -1,25 +1,22 @@
-import { useNavigation } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
 import { useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+
+import { stopActions, storeArray } from "../../redux/stopSlice";
+
+import { LinearGradient } from "expo-linear-gradient";
+
 import emptyStar from "../../assets/emptyStar.png";
 import fullStar from "../../assets/fullStar.png";
+
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
-import { loadArray, stopActions, storeArray } from "../../redux/stopSlice";
 
 export default function Stop({ id, name }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const favoriteControl = useSelector((state) => state.stopRedux.stops);
-
-  const favoriteStops = useSelector((state) => state.stopRedux.favoriteStops);
-  const stopId = useSelector((state) => state.stopRedux.stopId);
-
-  const isClickedToFavoriteButton = useSelector(
-    (state) => state.stopRedux.isClickedToFavoriteButton
-  );
 
   const navigateStop = () => {
     dispatch(stopActions.setStopName(name));
@@ -87,7 +84,7 @@ const styles = StyleSheet.create({
   },
   idText: {
     color: "white",
-    fontSize: 24,
+    fontSize: DEVICE_WIDTH / 17,
   },
   nameContainer: {
     backgroundColor: "white",
@@ -102,7 +99,7 @@ const styles = StyleSheet.create({
   },
   name: {
     color: "black",
-    fontSize: 24,
+    fontSize: DEVICE_WIDTH / 17,
   },
   emptyStar: {
     width: DEVICE_WIDTH / 14,

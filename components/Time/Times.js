@@ -1,10 +1,10 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 
 import SincanHours from "./SincanHours";
+import KayasHours from "./KayasHours";
 
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
-import { useSelector } from "react-redux";
-import KayasHours from "./KayasHours";
 
 const hours = [
   {
@@ -135,21 +135,19 @@ const styles = StyleSheet.create({
   },
   minutes: {
     width: DEVICE_WIDTH / 1.45,
-    // backgroundColor: "green",
     height: DEVICE_HEIGHT / 24,
     justifyContent: "center",
     paddingLeft: DEVICE_WIDTH / 50,
   },
   hoursText: {
-    // fontSize: 14,
     fontWeight: "500",
   },
   minutesText: {
-    // fontSize: 14,
     fontWeight: "600",
   },
   rightNow: {
-    fontSize: 24,
+    fontSize: DEVICE_WIDTH / 14,
+    fontWeight: "700",
     marginTop: DEVICE_HEIGHT / 40,
   },
 });

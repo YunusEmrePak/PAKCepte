@@ -1,20 +1,19 @@
+import { useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-
 import { useDispatch, useSelector } from "react-redux";
+
 import leftArrow from "../../assets/leftArrow.png";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
-const jsonTimes = require("../../times3.json");
-
-import { useEffect } from "react";
 import { stopActions } from "../../redux/stopSlice";
 import { calculateRemainingTime } from "../../utils/calculateRemainingTime";
+
+const jsonTimes = require("../../times.json");
 
 export default function KayasWay() {
   const dispatch = useDispatch();
 
   const times = useSelector((state) => state.stopRedux.timesKayas);
-
   const remainingTimeKayas = useSelector(
     (state) => state.stopRedux.remainingTimeKayas
   );
@@ -48,7 +47,9 @@ export default function KayasWay() {
         </View>
       ) : (
         <View style={styles.timeContainer}>
-          <Text style={styles.time}>{remainingTimeKayas} Dakika</Text>
+          <Text style={styles.time}>
+            {remainingTimeKayas} {remainingTimeKayas !== "Geldi" && "Dakika"}
+          </Text>
           <Image source={leftArrow} style={styles.leftIcon} />
         </View>
       )}
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   directionName: {
-    fontSize: 30,
+    fontSize: DEVICE_WIDTH / 14,
     color: "#fff",
     fontWeight: "800",
   },
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     marginTop: "8%",
   },
   time: {
-    fontSize: 30,
+    fontSize: DEVICE_WIDTH / 14,
     fontWeight: "700",
   },
   leftIcon: {
@@ -96,6 +97,7 @@ const styles = StyleSheet.create({
     height: DEVICE_WIDTH / 8,
   },
   rightNow: {
-    fontSize: 25,
+    fontSize: DEVICE_WIDTH / 14,
+    fontWeight: "700",
   },
 });

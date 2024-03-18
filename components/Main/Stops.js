@@ -1,24 +1,22 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { FlatList, StyleSheet, View } from "react-native";
+
+import { loadArray, loadArrayFavorite } from "../../redux/stopSlice";
+
 import Stop from "./Stop";
 
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
-import { useEffect } from "react";
-import { loadArray, loadArrayFavorite } from "../../redux/stopSlice";
 
 export default function Stops() {
   const dispatch = useDispatch();
 
-  const notStoredStops = useSelector((state) => state.stopRedux.notStoredStops);
-
   const filteredStops = useSelector((state) => state.stopRedux.filteredStops);
   const stops = useSelector((state) => state.stopRedux.stops);
 
-  const stopId = useSelector((state) => state.stopRedux.stopId);
-
   useEffect(() => {
     dispatch(loadArray());
+    dispatch(loadArrayFavorite());
   }, [dispatch]);
 
   return (

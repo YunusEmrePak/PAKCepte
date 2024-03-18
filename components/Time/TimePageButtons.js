@@ -1,9 +1,9 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+
 import { stopActions } from "../../redux/stopSlice";
-import rightArrow from "../../assets/rightArrow.png";
-import leftArrow from "../../assets/leftArrow.png";
+
+import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
 export default function TimePageButtons() {
   const dispatch = useDispatch();
@@ -29,8 +29,7 @@ export default function TimePageButtons() {
             timesButtonName === "Sincan" && styles.active,
           ]}
         >
-          <Text style={styles.sincanButtonText}>Sincan</Text>
-          <Image source={rightArrow} style={styles.rightIcon} />
+          <Text style={styles.buttonText}>Sincan Yönü</Text>
         </View>
       </Pressable>
       <Pressable onPress={kayasHandler}>
@@ -40,8 +39,7 @@ export default function TimePageButtons() {
             timesButtonName === "Kayas" && styles.active,
           ]}
         >
-          <Text style={styles.kayasButtonText}>Kayaş</Text>
-          <Image source={leftArrow} style={styles.leftIcon} />
+          <Text style={styles.buttonText}>Kayaş Yönü</Text>
         </View>
       </Pressable>
     </View>
@@ -65,11 +63,11 @@ const styles = StyleSheet.create({
     height: DEVICE_HEIGHT / 20,
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
-    borderColor: "black",
-    borderWidth: 1,
+    backgroundColor: "#48BDD9",
   },
-  sincanButtonText: {
-    fontSize: 25,
+  buttonText: {
+    fontSize: DEVICE_WIDTH / 17,
+    color: "white",
   },
   kayasButton: {
     flexDirection: "row",
@@ -80,14 +78,10 @@ const styles = StyleSheet.create({
     height: DEVICE_HEIGHT / 20,
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
-    borderColor: "black",
-    borderWidth: 1,
-  },
-  kayasButtonText: {
-    fontSize: 25,
+    backgroundColor: "#48BDD9",
   },
   active: {
-    backgroundColor: "#EADFB4",
+    backgroundColor: "#166DBB",
   },
   rightIcon: {
     width: DEVICE_WIDTH / 10,

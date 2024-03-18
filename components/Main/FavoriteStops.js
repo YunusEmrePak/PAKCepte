@@ -1,19 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
-
+import { useEffect } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { loadArray, loadArrayFavorite } from "../../redux/stopSlice";
+
+import FavoriteStop from "./FavoriteStop";
 
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
-import FavoriteStop from "./FavoriteStop";
-import { loadArrayFavorite } from "../../redux/stopSlice";
-import { useEffect } from "react";
 
 export default function FavoriteStops() {
   const dispatch = useDispatch();
 
   const favoriteStops = useSelector((state) => state.stopRedux.favoriteStops);
-  const stopId = useSelector((state) => state.stopRedux.stopId);
 
   useEffect(() => {
+    dispatch(loadArray());
     dispatch(loadArrayFavorite());
   }, [dispatch]);
 
@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   noFavoriteText: {
-    fontSize: 20,
+    fontSize: DEVICE_WIDTH / 19,
   },
 });

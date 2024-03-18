@@ -1,13 +1,11 @@
-import { StyleSheet } from "react-native";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import MainPage from "./pages/MainPage";
 import StopPage from "./pages/StopPage";
-
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Provider, useDispatch } from "react-redux";
 import TimePage from "./pages/TimePage";
-import { store } from "./store/store";
 
 import registerNNPushToken from "native-notify";
 
@@ -40,7 +38,3 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  appContainer: {},
-});

@@ -1,10 +1,12 @@
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Image, Pressable, StyleSheet, TextInput, View } from "react-native";
+
+import { stopActions } from "../../redux/stopSlice";
 
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, Pressable, StyleSheet, TextInput, View } from "react-native";
+
 import findIcon from "../../assets/find.png";
-import { useEffect, useRef } from "react";
-import { stopActions } from "../../redux/stopSlice";
 
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: "white",
     paddingHorizontal: DEVICE_WIDTH / 30,
-    fontSize: 18,
+    fontSize: DEVICE_WIDTH / 20,
   },
   findButton: {
     height: DEVICE_HEIGHT / 16.5,

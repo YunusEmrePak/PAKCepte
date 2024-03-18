@@ -1,13 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
+import { useSelector } from "react-redux";
 
-import { useDispatch, useSelector } from "react-redux";
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
 
-const jsonTimes = require("../../times3.json");
-
 export default function KayasHours({ id }) {
-  const dispatch = useDispatch();
-
   const times = useSelector((state) => state.stopRedux.timesKayas);
 
   return (
@@ -20,7 +16,7 @@ export default function KayasHours({ id }) {
           (val) =>
             val.hour === id && (
               <View key={Math.random()} style={styles.minuteContainer}>
-                <Text style={styles.minute}>{val.minute}</Text>
+                <Text>{val.minute}</Text>
               </View>
             )
         )}
@@ -31,8 +27,6 @@ export default function KayasHours({ id }) {
 
 const styles = StyleSheet.create({
   hourContainer: {
-    //   backgroundColor: "#F6F6F6",
-    // backgroundColor: "blue",
     width: DEVICE_WIDTH / 1.2,
     height: DEVICE_HEIGHT / 23,
     flexDirection: "row",
@@ -58,5 +52,4 @@ const styles = StyleSheet.create({
   minuteContainer: {
     marginRight: DEVICE_WIDTH / 25,
   },
-  minute: {},
 });

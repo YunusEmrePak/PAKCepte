@@ -1,23 +1,22 @@
-import { useNavigation } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
+import { useEffect } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
+
+import { LinearGradient } from "expo-linear-gradient";
+
 import emptyStar from "../../assets/emptyStar.png";
 import fullStar from "../../assets/fullStar.png";
+
 import { DEVICE_HEIGHT, DEVICE_WIDTH } from "../../constants/constants";
-import {
-  stopActions, storeArrayFavorite
-} from "../../redux/stopSlice";
-import { useEffect } from "react";
+import { stopActions, storeArrayFavorite } from "../../redux/stopSlice";
 
 export default function FavoriteStop({ id, name, number }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const favoriteControl = useSelector((state) => state.stopRedux.stops);
-
   const favoriteStops = useSelector((state) => state.stopRedux.favoriteStops);
-  const stopId = useSelector((state) => state.stopRedux.stopId);
 
   const navigateStop = () => {
     dispatch(stopActions.setStopName(name));
@@ -36,12 +35,9 @@ export default function FavoriteStop({ id, name, number }) {
     dispatch(stopActions.setFavoriteStops(favorite));
   };
 
-
   useEffect(() => {
-    // console.log(favoriteControl)
     dispatch(storeArrayFavorite(favoriteStops));
   }, [dispatch]);
-
 
   return (
     <Pressable onPress={navigateStop}>
@@ -84,7 +80,7 @@ const styles = StyleSheet.create({
   },
   idText: {
     color: "white",
-    fontSize: 24,
+    fontSize: DEVICE_WIDTH / 17,
   },
   nameContainer: {
     backgroundColor: "white",
@@ -99,7 +95,7 @@ const styles = StyleSheet.create({
   },
   name: {
     color: "black",
-    fontSize: 24,
+    fontSize: DEVICE_WIDTH / 17,
   },
   emptyStar: {
     width: DEVICE_WIDTH / 14,
