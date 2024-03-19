@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     height: DEVICE_HEIGHT / 17,
+    width: DEVICE_WIDTH / 4,
   },
   icon: {
     width: DEVICE_WIDTH / 17,
